@@ -1,0 +1,40 @@
+@import './../../styles/mixins';
+.footer {
+  color: #d7e0ea;
+  width: 100%;
+  background-color: #243442;
+  @include flexbox;
+  @include flex-direction(column);
+  @include justify-content;
+
+  &-legal {
+    color: #748fa7;
+    height: 65px;
+    background-color: #243442;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &-list {
+      height: 100%;
+      line-height: 100%;
+      @include flexbox;
+      @include flex-direction;
+      @include justify-content(center);
+      @include align-items;
+    }
+
+    &-item {
+      @include navigationDivider;
+
+      &:first-child {
+        &:before {
+          content: "\00A9";
+          display: inline-block;
+          padding-top: 2px;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

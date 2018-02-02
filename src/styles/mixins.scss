@@ -1,0 +1,315 @@
+//Ministry of Education -Tala
+
+@mixin flexbox {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@mixin inline-flex {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -moz-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+@mixin flex-direction($value: row) {
+    @if $value == row-reverse {
+        -webkit-box-direction: reverse;
+        -webkit-box-orient: horizontal;
+    } @else if $value == column {
+        -webkit-box-direction: normal;
+        -webkit-box-orient: vertical;
+    } @else if $value == column-reverse {
+        -webkit-box-direction: reverse;
+        -webkit-box-orient: vertical;
+    } @else {
+        -webkit-box-direction: normal;
+        -webkit-box-orient: horizontal;
+    }
+    -webkit-flex-direction: $value;
+    -moz-flex-direction: $value;
+    -ms-flex-direction: $value;
+    flex-direction: $value;
+}
+
+@mixin flex-wrap($value: wrap) {
+    -webkit-flex-wrap: $value;
+    -moz-flex-wrap: $value;
+    @if $value == nowrap {
+        -ms-flex-wrap: none;
+    } @else {
+        -ms-flex-wrap: $value;
+    }
+    flex-wrap: $value;
+}
+
+@mixin justify-content($value: space-between) {
+    @if $value == flex-start {
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+    } @else if $value == flex-end {
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+    } @else if $value == space-between {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+    } @else if $value == space-around {
+        -ms-flex-pack: distribute;
+    } @else {
+        -webkit-box-pack: $value;
+        -ms-flex-pack: $value;
+    }
+    -webkit-justify-content: $value;
+    -moz-justify-content: $value;
+    justify-content: $value;
+}
+
+@mixin align-items($value: center) {
+    @if $value == flex-start {
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+    } @else if $value == flex-end {
+        -webkit-box-align: end;
+        -ms-flex-align: end;
+    } @else {
+        -webkit-box-align: $value;
+        -ms-flex-align: $value;
+    }
+    -webkit-align-items: $value;
+    -moz-align-items: $value;
+    align-items: $value;
+}
+
+@mixin flex-basis($value: auto) {
+    -webkit-flex-basis: $value;
+    -moz-flex-basis: $value;
+    -ms-flex-preferred-size: $value;
+    flex-basis: $value;
+}
+
+@mixin flex-grow($int: 0) {
+    -webkit-box-flex: $int;
+    -webkit-flex-grow: $int;
+    -moz-flex-grow: $int;
+    -ms-flex-positive: $int;
+    flex-grow: $int;
+}
+
+@mixin flex-shrink($int: 1) {
+    -webkit-flex-shrink: $int;
+    -moz-flex-shrink: $int;
+    -ms-flex-negative: $int;
+    flex-shrink: $int;
+}
+
+@mixin navigationDivider {
+    &:hover {
+        cursor: pointer;
+    }
+    &:not(:first-child):after {
+        content: "|";
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+}
+
+@mixin transition($duration: 0.3s, $type: ease-out, $property: all) {
+    -webkit-transition: $property $duration $type;
+    -moz-transition: $property $duration $type;
+    -ms-transition: $property $duration $type;
+    -o-transition: $property $duration $type;
+    transition: $property $duration $type;
+}
+
+@mixin box-shadow($top: 0, $left: 2px, $blur: 5px, $spread: 0, $color: rgba(0,0,0,0.1),  $inset: false) {
+    @if $inset {
+        -webkit-box-shadow:inset $top $left $blur $spread $color;
+        -moz-box-shadow:inset $top $left $blur $spread $color;
+        box-shadow:inset $top $left $blur $spread $color;
+    } @else {
+        -webkit-box-shadow: $top $left $blur $spread $color;
+        -moz-box-shadow: $top $left $blur $spread $color;
+        box-shadow: $top $left $blur $spread $color;
+    }
+}
+
+@mixin border-radius($br) {
+    -moz-border-radius: $br;
+    -webkit-border-radius: $br;
+    border-radius: $br;
+}
+
+@mixin transform($deg) {
+    -webkit-transform: rotate($deg);
+    -moz-transform: rotate($deg);
+    -ms-transform: rotate($deg);
+    -o-transform: rotate($deg);
+    transform: rotate($deg);
+}
+
+@mixin placeholder($color) {
+    &::-webkit-input-placeholder {
+        color: $color;
+    }
+    &::-moz-placeholder {
+        color: $color;
+    }
+    &:-ms-input-placeholder {
+        color: $color;
+    }
+}
+
+@mixin area($padding-top: 25px, $padding-right: 20px) {
+    padding: $padding-top $padding-right;
+    margin-bottom: 20px;
+    background-color: $light-color;
+    @include box-shadow;
+}
+
+@mixin arrow($arrow-position: bottom) {
+    width: 70px;
+    height: 16px;
+    margin-left: -35px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    @if $arrow-position == bottom {
+        bottom: -16px;
+    } @else {
+        top: -16px;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 20px;
+        @if $arrow-position == bottom {
+            top: -20px;
+        } @else {
+            bottom: -20px;
+        }
+        width: 25px;
+        height: 25px;
+        background: $light-color;
+        border: 1px solid $tooltip-border;
+        -webkit-box-shadow: 6px 5px 9px -9px black, 5px 6px 9px -9px black;
+        -moz-box-shadow: 6px 5px 9px -9px black, 5px 6px 9px -9px black;
+        box-shadow: 6px 5px 9px -9px black, 5px 6px 9px -9px black;
+        @include transform(45deg);
+    }
+}
+
+@mixin arrowHorizontal($arrow-position: right) {
+    width: 16px;
+    height: 70px;
+    margin-top: -35px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    @if $arrow-position == right {
+        right: -16px;
+    } @else {
+        top: -16px;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        top: 20px;
+        @if $arrow-position == right {
+            left: -20px;
+        } @else {
+            right: -20px;
+        }
+        width: 25px;
+        height: 25px;
+        background: $light-color;
+        border: 1px solid $tooltip-border;
+        -webkit-box-shadow: 6px 5px 9px -9px black, 5px 6px 9px -9px black;
+        -moz-box-shadow: 6px 5px 9px -9px black, 5px 6px 9px -9px black;
+        box-shadow: 6px 5px 9px -9px black, 5px 6px 9px -9px black;
+        @include transform(45deg);
+    }
+}
+
+@mixin checkbox($color: $green, $size: 20px, $tikWidth: 5px, $tikHeight: 10px, $tikTop: 4px, $tikLeft: 8px ) {
+    display: block;
+    padding-right: 30px;
+    position: relative;
+    cursor: pointer;
+
+    input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    &_indicator {
+        position: absolute;
+        top: 29%;
+        right: 0;
+        width: $size;
+        height: $size;
+        background: $light-color;
+        border: 2px solid $check-box-border;
+        @include border-radius(50%);
+    }
+
+    //hover and focus states
+    &:hover input ~ .control_indicator,
+    input:focus ~ .control_indicator {
+        background: $check-box-hover;
+    }
+
+    //checked state
+    input:checked ~ .control_indicator {
+        background: $color;
+        border: none;
+    }
+
+    //hover state whilst checked
+    &:hover input:not([disabled]):checked ~ .control_indicator,
+    input:checked:focus ~ .control_indicator {
+        background: $color;
+    }
+
+    //disabled state
+    input:disabled ~ .control_indicator {
+        pointer-events: none;
+        opacity: 0.6;
+        background: $check-box-hover;
+    }
+
+    //check mark div
+    &_indicator:after {
+        position: absolute;
+        display: none;
+        content: '';
+    }
+
+    //show check mark
+    input:checked ~ .control_indicator:after {
+        display: block;
+    }
+
+    //checkbox tick
+    &_checkbox .control_indicator:after {
+        width: $tikWidth;
+        height: $tikHeight;
+        border: solid $light-color;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        top: $tikTop;
+        left: $tikLeft;
+    }
+
+    //disabled tick colour
+    &_checkbox input:disabled ~ .control_indicator:after {
+        border-color: $check-box-disabled-tick;
+    }
+}
+

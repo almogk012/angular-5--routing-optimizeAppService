@@ -1,0 +1,25 @@
+.wizard-step-3{
+    .wizard-content{
+        margin-top:54px;
+        .info{
+           svg{
+            position: relative;
+            top: 3px;
+            
+           }
+        }
+        .group-radio-buttons{
+
+        }
+        .kindOfFile{
+            label{
+                display: block;
+            }
+            .upload-btn{
+                height: 30px;
+                width: 101px;
+                margin-right: 9px;
+            }
+        }
+    }
+}
